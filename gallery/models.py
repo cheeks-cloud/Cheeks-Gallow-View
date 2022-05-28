@@ -8,20 +8,20 @@ class Image(models.Model):
   image_location = models.ForeignKey('Location', on_delete = models.CASCADE)
   category = models.ForeignKey('Category', on_delete = models.CASCADE)
 
-  # def __str__(self):
-  #     return self.image
+  def __str__(self):
+      return self.image
  
-  # def save_image(self):
-  #   pass
+  def save_image(self):
+    pass
 
-  # def delete_image(self):
-  #   pass
+  def delete_image(self):
+    pass
 
-  # def update_image(self, image):
-  #   pass
+  def update_image(self, image):
+    pass
 
-  # def get_image_by_id(self, id):
-  #   pass
+  def get_image_by_id(self, id):
+    pass
 
   @classmethod
   def search_image(category):
