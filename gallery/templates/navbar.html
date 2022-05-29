@@ -15,6 +15,17 @@
         </li>
     
       </ul>
-    
+      <form action="/search/" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group">
+                <input type="text" name="category" class="form-control bg-transparent"
+                       placeholder="food,Travel">
+                <button class="btn search" id="button-addon2" type="submit"><i
+                        class="fas fa-search text-light"></i>
+                </button>
+            </div>
+        </div>
+    </form>
     </div>
   </nav>

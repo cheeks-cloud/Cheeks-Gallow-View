@@ -51,19 +51,20 @@ class Location(models.Model):
       return self.name
 
 class Category(models.Model):
-    CATEGORY_CHOICES = [
+    CHOICES = [
         ('Nature', 'Nature'),
-        ('Vehicles', 'Vehicles'),
-        ('People', 'People'),
-        ('Travel', 'Travel'),
-        ('Food', 'Food'),
-        ('People', 'People'),
         ('Sky', 'Sky'),
         ('Animals', 'Animals'),
+        ('People', 'People'),
+        ('Food', 'Food'),
+        ('Travel', 'Travel'),
+        ('Vehicles', 'Vehicles'),
+        ('People', 'People'),
+        
     ]
 
 
-    category = models.CharField( choices=CATEGORY_CHOICES, max_length=30,null=False, blank=False)
+    category = models.CharField( choices=CHOICES, max_length=30,null=False, blank=False)
 
     def __str__(self):
       return self.category
