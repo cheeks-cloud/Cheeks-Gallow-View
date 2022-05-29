@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 # Create your models here.
 class Image(models.Model):
@@ -6,7 +7,10 @@ class Image(models.Model):
   image_name = models.CharField(max_length=40,null=False, blank=False)
   image_description = models.TextField(null=False, blank=False)
   image_location = models.ForeignKey('Location', on_delete = models.CASCADE)
-  image_ category = models.ForeignKey('Category', on_delete = models.CASCADE)
+  image_category = models.ForeignKey('Category', on_delete = models.CASCADE)
+ 
+  class Meta:
+    pass
 
   def __str__(self):
       return self.image
@@ -16,7 +20,7 @@ class Image(models.Model):
 
   @classmethod
   def delete_image(self):
-    pass
+    self.delete()
 
   def update_image(self, new_name, new_description, new_image, new_category, new_location):
       self.image = new_image
@@ -24,8 +28,10 @@ class Image(models.Model):
       self.image_location = new_location
       self.image_description = new_description
       self.image_category = new_category
-  def get_image_by_id(self, id):
-    pass
+
+  def get_image_by_id(cls, image_id):
+    image_found = get_object_or_404(cls,id=image_id)
+    return image_found
 
   @classmethod
   def search_image(cls, category):
@@ -42,10 +48,22 @@ class Location(models.Model):
   name = models.ManyToManyField(Image)
 
   def __str__(self):
-      return self.location
+      return self.name
 
 class Category(models.Model):
-  category = models.CharField(max_length=40)
+    CATEGORY_CHOICES = [
+        ('Nature', 'Nature'),
+        ('Vehicles', 'Vehicles'),
+        ('People', 'People'),
+        ('Travel', 'Travel'),
+        ('Food', 'Food'),
+        ('People', 'People'),
+        ('Sky', 'Sky'),
+        ('Animals', 'Animals'),
+    ]
 
-  def __str__(self):
+
+    category = models.CharField( choices=CATEGORY_CHOICES, max_length=30,null=False, blank=False)
+
+    def __str__(self):
       return self.category
