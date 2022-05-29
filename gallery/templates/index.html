@@ -1,5 +1,46 @@
 {%extends 'base.html'%}
 {% block content %}
    <h1 class="text-center"> Welcome to Cheeks Gallow View  </h1>
-{% endblock %}
 
+
+<div class="row">
+   {% for image in images %}
+   <div class="image-card col-lg-6 col-md-12 mb-4 mb-lg-0 position-relative">
+       <img
+               src="{{ image.image.url }}"
+               class="w-100 shadow-1-strong rounded mb-4 img-fluid image"
+               alt="{{ image.image_name }}"
+       />
+       <div class="details position-absolute" id="details">
+           <p class="fs-4">{{ image.image_name }}</p>
+           <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#{{ image.image_name | truncatechars:3 }}">
+               More
+           </button>
+       </div>
+   </div>
+   <div class="modal fade" id="{{ image.name | truncatechars:3  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">{{ image.image_name }}</h5>
+                  <button type="button" class="" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  {{ image.image_description }}
+                  
+                  <div class="mt-4">
+                      Category: {{ image.category.category}} <br>
+                      Location: {{ image.location.name }} <br>
+                      <button type="button" class="btn btn-sm text-light" onclick="copy_url('{{ image.image.url }}')" id="copy">copy link</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  {% empty %}
+  <div class="alert alert-warning text-center" role="alert">
+      Oops,please add images   
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
