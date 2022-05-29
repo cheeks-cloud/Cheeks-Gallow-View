@@ -1,4 +1,4 @@
-<!-- # News Project
+# News Project
 
 
 ### version vi.o.3
@@ -70,4 +70,4 @@
 
   [Go back to the top](#)
 
-    -->
+   
