@@ -35,20 +35,30 @@ class Image(models.Model):
     return image_found
 
   @classmethod
-  def search_image(cls, category):
-    image_to_find = Image.objects.filter(category=category)
+  def search_image(cls, image_category):
+    image_to_find = Image.objects.filter(category=image_category)
     return image_to_find
 
   @classmethod
-  def filter_by_location(cls,location):
-    image_by_location = Image.objects.filter(location=location)
+  def filter_by_location(cls,image_location):
+    image_by_location = Image.objects.filter(location=image_location)
     return image_by_location
 
 
 class Location(models.Model):
-  name = models.CharField(max_length=30,null=False, blank=False)
+    CHOICES = [
+        ('Africa', 'Africa'),
+        ('Asia', 'Asia'),
+        ('US', 'US'),
+        ('Europe', 'Europe'),
+        ('Australia', 'Australia'),
+        ('Antarctica', 'Antarctica'),
+        ('SA', 'SA'),
+        
+    ]
+    name = models.CharField( choices=CHOICES, max_length=30,null=False, blank=False)
 
-  def __str__(self):
+    def __str__(self):
       return self.name
 
 class Category(models.Model):
