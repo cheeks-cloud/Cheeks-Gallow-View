@@ -9,19 +9,13 @@ def welcome(request):
 def image(request):
   try:
     image = Image.objects.get(id = image.id)
-  except DoesNotExist:
+  except Exception:
     raise Http404()
+    
   return render(request, 'image.html',{'image':image})
 
 def update(request):
   new_image= Image.objects.filter(id=request).update(image = 'image')
   return new_image
   
-
-def search_by_category(request):
-  if request.method == 'POST':
-        image_category = request.POST.get('image_category')
-        images = Image.search_image(image_category)
-        return render(request, 'index.html', {'images': images})
-  return redirect('/')
 

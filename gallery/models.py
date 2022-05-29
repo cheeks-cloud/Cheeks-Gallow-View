@@ -1,62 +1,8 @@
-from re import L
 from django.db import models
 from django.shortcuts import get_object_or_404
 
-
-class Image(models.Model):
-  image = models.ImageField(null=False, blank=False, upload_to='images/')
-  image_name = models.CharField(max_length=40,null=False, blank=False)
-  image_description = models.TextField(null=False, blank=False)
-  image_location = models.ForeignKey('Location', on_delete = models.CASCADE)
-  image_category = models.ForeignKey('Category', on_delete = models.CASCADE)
- 
-  # class Meta:
-  #   ordering = ['image_location']
-
-  def __str__(self):
-      return self.image
- 
-  def save_image(self):
-    self.save()
-
-  @classmethod
-  def delete_image(self):
-    self.delete()
-
-  def update_image(self, new_name, new_description, new_image, new_category, new_location):
-      self.image = new_image
-      self.image_name = new_name
-      self.image_location = new_location
-      self.image_description = new_description
-      self.image_category = new_category
-
-  def get_image_by_id(cls, image_id):
-    image_found = get_object_or_404(cls,id=image_id)
-    return image_found
-
-  @classmethod
-  def search_image(cls, image_category):
-    image_to_find = Image.objects.filter(category=image_category)
-    return image_to_find
-
-  @classmethod
-  def filter_by_location(cls,image_location):
-    image_by_location = Image.objects.filter(location=image_location)
-    return image_by_location
-
-
 class Location(models.Model):
-    CHOICES = [
-        ('Africa', 'Africa'),
-        ('Asia', 'Asia'),
-        ('US', 'US'),
-        ('Europe', 'Europe'),
-        ('Australia', 'Australia'),
-        ('Antarctica', 'Antarctica'),
-        ('SA', 'SA'),
-        
-    ]
-    name = models.CharField( choices=CHOICES, max_length=30,null=False, blank=False)
+    name = models.CharField( max_length=30,null=False, blank=False)
 
     def __str__(self):
       return self.name
@@ -78,3 +24,42 @@ class Category(models.Model):
 
     def __str__(self):
       return self.category
+
+class Image(models.Model):
+  image = models.ImageField(null=False, blank=False, upload_to='images/')
+  image_name = models.CharField(max_length=40,null=False, blank=False)
+  image_description = models.TextField(null=False, blank=False)
+  location = models.ForeignKey(Location, on_delete = models.CASCADE)
+  category = models.ForeignKey(Category, on_delete = models.CASCADE)
+ 
+  # class Meta:
+  #   ordering = ['image_location']
+  def save_image(self):
+    self.save()
+
+  def delete_image(self):
+     Image.objects.get(id = self.id).delete()
+
+  def update_image(self,val):
+      Image.objects.filter(id = self.id).update(image=val)
+
+  @classmethod
+  def get_image_by_id(cls, image_id):
+    return cls.objects.filter(cls,id=image_id)
+
+  @classmethod
+  def search_image(cls, category):
+    try:
+      image_to_find = Category.objects.filter(category=category)
+      return cls.objects.filter(category_id = image_to_find.id)
+    except Exception:
+      return 'image not found'
+
+  @classmethod
+  def filter_by_location(cls,location):
+    image_by_location = Location.objects.get(location = location)
+    return cls.objects.filter(location_id = image_by_location.id) 
+
+  def __str__(self):
+      return self.image_name
+
