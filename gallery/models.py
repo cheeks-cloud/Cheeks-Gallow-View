@@ -1,3 +1,4 @@
+from re import L
 from django.db import models
 from django.shortcuts import get_object_or_404
 
@@ -9,8 +10,8 @@ class Image(models.Model):
   image_location = models.ForeignKey('Location', on_delete = models.CASCADE)
   image_category = models.ForeignKey('Category', on_delete = models.CASCADE)
  
-  class Meta:
-    ordering = ['location']
+  # class Meta:
+  #   ordering = ['image_location']
 
   def __str__(self):
       return self.image
