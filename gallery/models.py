@@ -1,7 +1,7 @@
 from django.db import models
 from django.shortcuts import get_object_or_404
 
-# Create your models here.
+
 class Image(models.Model):
   image = models.ImageField(null=False, blank=False, upload_to='images/')
   image_name = models.CharField(max_length=40,null=False, blank=False)
@@ -10,7 +10,7 @@ class Image(models.Model):
   image_category = models.ForeignKey('Category', on_delete = models.CASCADE)
  
   class Meta:
-    pass
+    ordering = ['location']
 
   def __str__(self):
       return self.image
@@ -45,7 +45,7 @@ class Image(models.Model):
 
 
 class Location(models.Model):
-  name = models.ManyToManyField(Image)
+  name = models.CharField(max_length=30,null=False, blank=False)
 
   def __str__(self):
       return self.name
@@ -62,7 +62,6 @@ class Category(models.Model):
         ('People', 'People'),
         
     ]
-
 
     category = models.CharField( choices=CHOICES, max_length=30,null=False, blank=False)
 
