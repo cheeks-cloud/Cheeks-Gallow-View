@@ -22,9 +22,9 @@ def update(request):
 def search_by_category(request):
 
     if 'image' in request.GET and request.GET["image"]:
-        search_term = request.GET.get("image")
-        searched_images = Image.search_by_category(search_term)
-        message = f"{search_term}"
+        image_to_find = request.GET.get("image")
+        searched_images = Image.search_by_category(image_to_find)
+        message = f"{image_to_find}"
 
         return render(request, 'search.html',{"message":message,"image": searched_images})
 

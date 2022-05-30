@@ -3,6 +3,11 @@ from django.shortcuts import get_object_or_404
 
 class Location(models.Model):
     name = models.CharField( max_length=30,null=False, blank=False)
+    def save_location(self):
+      self.save()
+
+    def delete_location(self):
+      Location.objects.get(id = self.id).delete()
 
     def __str__(self):
       return self.name
@@ -21,7 +26,8 @@ class Category(models.Model):
     ]
 
     category = models.CharField( choices=CHOICES, max_length=30,null=False, blank=False)
-
+    def save_category(self):
+      self.save()
     def __str__(self):
       return self.category
 
@@ -32,8 +38,6 @@ class Image(models.Model):
   location = models.ForeignKey(Location, on_delete = models.CASCADE)
   category = models.ForeignKey(Category, on_delete = models.CASCADE)
  
-  # class Meta:
-  #   ordering = ['image_location']
   def save_image(self):
     self.save()
 
