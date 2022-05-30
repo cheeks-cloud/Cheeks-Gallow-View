@@ -7,10 +7,11 @@
         <div class="container">
             <div class="row">
             {% for image in images %}
-            <div class="image-card col-lg-6 col-md-12 mb-4 mb-lg-0 position-relative">
+            <div class="image col-lg-6 col-md-12 mb-4 mb-lg-0 position-relative">
                 <img src="{{ image.image.url }}" class="w-100 shadow-1-strong rounded mb-4 img-fluid image" alt="{{ image.image_name }}"/>
-                <div class="details position-absolute" id="details">
-                    <p class="fs-4">{{ image.image_name }}</p>
+                
+                <div class="info position-absolute">
+                  <p class="fs-4">{{ image.image_name }}</p>
                     <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#{{ image.image_name}}">
                         More
                     </button>
