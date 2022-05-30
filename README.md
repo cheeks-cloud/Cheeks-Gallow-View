@@ -1,4 +1,4 @@
-# News Project
+# Cheeks Gallow View
 
 
 ### version vi.o.3
@@ -16,7 +16,7 @@
 + [BDD](#bdd)
 
 ## Description
-<p> This is a project that consumes the News API to display news teir sources and their articles</p>
+<p> This is a project where a user can post pictures for viewing from later it also has an admin panel</p>
 
 ## Installation
 
@@ -28,8 +28,10 @@
 
 ## setup/installation instructions
 * you need to have python installed first
-* you also need pip,and a virtual environment with flask.
+* you also need pip,and a virtual environment with Django.
+* You need all the dependencies in my requirements file
 * You can fork te project from My github and clone it to ge all  files .
+* Happy coding
  
 
  [Go back to the top]( )
@@ -38,13 +40,13 @@
  * HTML which was used to build the structure of the page.
  * CSS  which was used to style the page.
  * Bootstrap to help in styling.
- * Flask Frameworks.
+ * Django Frameworks.
  * Heroku
  
 
  ## Reference
   * Bootstrap starter template.
-  * StackOverflow
+  * Django Documentation
   
 
   [Go Back to the top]( #)
@@ -62,8 +64,6 @@
 
   Linked - [Agnes Kaswii]
   (https://www.linkedin.com/in/agnes-kaswii-6442b91bb/)
-
-    ## Contact Me
 
   Email - [Agnes Kaswii]
   agneskaswii700@gmail.com
