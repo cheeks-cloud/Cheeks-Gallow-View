@@ -11,15 +11,39 @@
                 <img src="{{ image.image.url }}" class="w-100 shadow-1-strong rounded mb-4 img-fluid image" alt="{{ image.image_name }}"/>
                 <div class="details position-absolute" id="details">
                     <p class="fs-4">{{ image.image_name }}</p>
-                    <a href="{% url 'oneImage'%}" class="btn btn-success btn-lg active" role="button" aria-pressed="true"> click for more </a>
+                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#{{ image.name}}">
+                        More
+                    </button>
+                </div>
+            </div>
+            <div class="modal fade" id="{{ image.name}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ image.name }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ image.description }}
+                            
+                            <div class="mt-4">
+                                Category: {{ image.category.name }} <br>
+                                Location: {{ image.location.name }} <br>
+                                <button type="button" class="btn btn-sm text-light" onclick="copy_url('{{ image.image.url }}')" id="copy">copy link</button>
+                            </div>
+                        </div>
                     </div>
+                </div>
             </div>
             {% empty %}
             <div class="alert alert-warning text-center" role="alert">
-                Oops,please add images   
+                Oops, seems there are no images   
             </div>
             {% endfor %}
-            </div>
         </div>
 </div>
+{% block script %}
+    <link rel="stylesheet" href="{% static 'css/index.js' %}">
+{% endblock %}
+
 {% endblock %}
