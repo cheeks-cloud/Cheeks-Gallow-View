@@ -1,5 +1,5 @@
-// $(document).ready(function () {
-//   $('.info').hide()
+$(document).ready(function () {
+  $('.info').hide()
 
 //   $('.image-card').on('click', function() {
 //       $(this).children('.image').addClass('blur')

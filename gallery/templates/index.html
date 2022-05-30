@@ -9,9 +9,23 @@
             {% for image in images %}
             <div class="image-card col-lg-6 col-md-12 mb-4 mb-lg-0 position-relative">
                 <img src="{{ image.image.url }}" class="w-100 shadow-1-strong rounded mb-4 img-fluid image" alt="{{ image.image_name }}"/>
-                <div class="details position-absolute">
-                    <p class="fs-4">{{ image.image_name }}</p>   
-                          <p>  {{ image.image_description }}</p>   
+                <div class="details position-absolute" id="details">
+                    <p class="fs-4">{{ image.image_name }}</p>
+                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#{{ image.image_name}}">
+                        More
+                    </button>
+                </div>
+            </div>
+            <div class="modal fade" id="{{ image.image_name}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ image.image_name }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ image.image_description }}
+                            
                             <div class="mt-4">
                                 Category: {{ image.category.name }} <br>
                                 Location: {{ image.location.name }} <br>
@@ -28,8 +42,5 @@
             {% endfor %}
         </div>
 </div>
-{% block script %}
-    <link rel="stylesheet" href="{% static 'css/index.js' %}">
-{% endblock %}
 
 {% endblock %}
