@@ -3,15 +3,15 @@ $(document).ready(function () {
 
   $('.image').on('click', function() {
       $(this).children('.image').addClass('blur')
-      $(this).children('.details').fadeIn( "slow")
+      $(this).children('.info').fadeIn( "slow")
   })
 
-//   $('.image').on('mouseleave', function() {
-//       $(this).children('.image').removeClass('blur')
-//       $(this).children('.details').fadeOut( "slow")
-//   })
-// })
+  $('.image').on('click', function() {
+      $(this).children('.image').removeClass('blur')
+      $(this).children('.info').fadeOut( "slow")
+  })
+})
 
-// function copy_url(data){
-//   navigator.clipboard.writeText(window.location.origin + data)
-// }
+function copy_url(data){
+  navigator.clipboard.writeText(window.location.origin + data)
+}
